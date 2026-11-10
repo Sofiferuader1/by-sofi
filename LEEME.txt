@@ -1,8 +1,5 @@
-BY SOFI — Versión 4
+BY SOFI — Versión 5 (responsive)
 
-Cambios respecto de la versión 3:
-- Fotografía editada a la derecha de la portada, adaptada a celular.
-- Portada sin «Hola, soy Sofi» repetido.
-- Texto de «Sobre mí» actualizado, sin «creadora de By Sofi».
+Correcciones de visualización en celulares y tablets: portada, fotografía, estadísticas, proyectos, servicios, botones y contacto.
 
-Para actualizar GitHub Pages: subí los archivos de esta carpeta a la raíz del repositorio by-sofi, manteniendo las carpetas assets y docs. Sobrescribí index.html y styles.css.
+Para actualizar GitHub: abrí tu repositorio by-sofi, subí el contenido de esta carpeta a la raíz y confirmá la sobrescritura de styles.css. Si los demás archivos no cambiaron, también podés subir únicamente styles.css para aplicar esta corrección.
