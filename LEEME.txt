@@ -1,0 +1,7 @@
+BY SOFI — SEGUNDA VERSIÓN
+
+Abrí index.html con Chrome. Los botones de consulta abren Gmail en el navegador con el asunto correspondiente; requieren iniciar sesión en Gmail. También podés copiar el correo en la sección Contacto.
+
+Las miniaturas de Instagram son identificadores neutros, no imágenes de las publicaciones. Para mostrar las portadas originales se necesitarán imágenes o capturas.
+
+Los archivos PDF y el video están incluidos para visualización local.
