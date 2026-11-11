@@ -13,10 +13,36 @@ document.querySelector('#close-video').addEventListener('click', () => {video.pa
 dialog.addEventListener('click', event => {if(event.target === dialog){video.pause();dialog.close()}});
 dialog.addEventListener('close', () => video.pause());
 
-const copyButton=document.querySelector('#copy-email');
-copyButton?.addEventListener('click',async()=>{
- const address='by.sofifernandez@gmail.com'; const status=document.querySelector('#copy-status');
- try { if(navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(address);
- else { const field=document.createElement('textarea');field.value=address;field.style.position='fixed';field.style.opacity='0';document.body.appendChild(field);field.select();if(!document.execCommand('copy')) throw new Error('No se pudo copiar');field.remove(); } status.textContent='¡Correo copiado!'; }
- catch(e) { status.textContent='Copiá este correo: '+address; }
-});
+
+// Contadores que se activan una sola vez al entrar en pantalla.
+(() => {
+  const numbers = [...document.querySelectorAll('.count-up')];
+  if (!numbers.length) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+
+  const format = new Intl.NumberFormat('es-AR');
+  const duration = 1150;
+  const animate = (node) => {
+    const target = Number(node.dataset.count);
+    const prefix = node.dataset.prefix || '';
+    const finalLabel = node.dataset.final || `${prefix}${format.format(target)}`;
+    let started = null;
+    const step = (timestamp) => {
+      if (started === null) started = timestamp;
+      const t = Math.min((timestamp - started) / duration, 1);
+      const easeOut = 1 - (1 - t) ** 3;
+      const current = Math.round(target * easeOut);
+      node.textContent = t >= 1 ? finalLabel : `${prefix}${format.format(current)}`;
+      if (t < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+  const observer = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      observer.unobserve(entry.target);
+      animate(entry.target);
+    }
+  }, { threshold: 0.45 });
+  numbers.forEach(node => observer.observe(node));
+})();

@@ -85,3 +85,38 @@ img,video{max-width:100%}
   .site-header .brand{font-size:26px}
   .site-header .top-cta{font-size:11px}
 }
+
+
+/* V6: marquee continuo hacia la derecha y packs con movimiento sutil. */
+.ticker{display:block;position:relative;overflow:hidden;padding:0;background:#dfc5c7;white-space:nowrap}
+.ticker-track{display:flex;width:max-content;align-items:center;animation:marquee-right 31s linear infinite;will-change:transform}
+.ticker-unit{display:flex;flex:0 0 auto;align-items:center;justify-content:space-around;gap:clamp(24px,4vw,72px);padding:19px clamp(20px,4vw,58px);min-width:max(100vw,900px)}
+.ticker-unit span{font-size:12px;letter-spacing:.14em;font-weight:700}
+.ticker-unit i{font-style:normal;font-size:20px;font-weight:400}
+@keyframes marquee-right{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+.price-card{position:relative;animation:pack-float 5.7s ease-in-out infinite;transition:box-shadow .25s ease,border-color .25s ease}
+.price-card:nth-child(2){animation-delay:-1.8s}
+.price-card:nth-child(3){animation-delay:-3.6s}
+@keyframes pack-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.price-card:hover,.price-card:focus-within{animation-play-state:paused;box-shadow:0 16px 38px rgba(109,74,82,.15)}
+.price-grid{padding-top:13px;padding-bottom:18px}
+.contact-actions .btn{min-width:174px}
+@media(max-width:700px){
+ .ticker-unit{min-width:max(100vw,680px);gap:29px;padding:15px 25px}
+ .ticker-unit span{font-size:10px}
+ .ticker-track{animation-duration:25s}
+ .price-card{animation-duration:6.5s}
+ .price-grid{gap:23px}
+}
+@media(prefers-reduced-motion:reduce){
+ .ticker-track,.price-card{animation:none!important;transform:none!important}
+ .ticker{overflow-x:auto;scrollbar-width:none}
+ .ticker::-webkit-scrollbar{display:none}
+}
+
+/* V7: preserva el ancho de las cifras en móvil durante el conteo. */
+.figure-grid strong.count-up{font-variant-numeric:tabular-nums;white-space:nowrap}
+@media(max-width:700px){.figure-grid strong.count-up{font-size:clamp(42px,10vw,63px)}}
+
+/* By Sofi: tarjeta del nuevo reel */
+.work-image.abstract-six { background: linear-gradient(145deg, #f0d1d7 0%, #f8e8e4 55%, #e3c7bf 100%); }
