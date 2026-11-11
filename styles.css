@@ -120,3 +120,70 @@ img,video{max-width:100%}
 
 /* By Sofi: tarjeta del nuevo reel */
 .work-image.abstract-six { background: linear-gradient(145deg, #f0d1d7 0%, #f8e8e4 55%, #e3c7bf 100%); }
+
+
+/* V9 — franja continua y con una sola fila en Safari iOS y Android. */
+.ticker {
+  position:relative; display:block; box-sizing:border-box;
+  width:100%; height:72px; padding:0; margin:0;
+  overflow:hidden!important; overflow-x:hidden!important; overflow-y:hidden!important;
+  white-space:nowrap; background:#dfc5c7;
+  contain:layout paint;
+}
+.ticker-track {
+  position:relative; display:flex!important; flex-direction:row!important; flex-wrap:nowrap!important;
+  align-items:stretch; justify-content:flex-start;
+  box-sizing:content-box; height:100%; width:max-content;
+  animation:bysofi-marquee-right 23s linear infinite!important;
+  will-change:transform; transform:translate3d(-50%,0,0);
+}
+.ticker-unit {
+  flex:0 0 auto!important; display:inline-flex!important; flex-flow:row nowrap!important;
+  align-items:center; justify-content:flex-start; box-sizing:border-box;
+  min-width:0!important; width:max-content; height:100%;
+  gap:28px; padding:0 28px; white-space:nowrap;
+}
+.ticker-word {flex-shrink:0; white-space:nowrap; font-family:'DM Sans',Arial,sans-serif; font-size:12px; line-height:1; color:#604c50; font-weight:700; letter-spacing:.14em}
+.ticker-spark {flex:0 0 16px; width:16px; height:16px; color:#896970; display:inline-flex; align-items:center; justify-content:center; line-height:1}
+.ticker-spark svg {display:block; width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:1.5; stroke-linecap:round}
+@keyframes bysofi-marquee-right {from{transform:translate3d(-50%,0,0)} to{transform:translate3d(0,0,0)}}
+@media(max-width:700px) {
+  .ticker {height:58px}
+  .ticker-track {animation-duration:20s!important}
+  .ticker-unit {min-width:0!important; height:58px; padding:0 19px; gap:20px}
+  .ticker-word {font-size:11px; letter-spacing:.11em}
+  .ticker-spark,.ticker-spark svg {width:13px;height:13px}
+}
+
+/* V9 — iconografía vectorial monocromática, sin símbolos emoji verdes. */
+.service-symbol {height:48px; display:flex; align-items:center; justify-content:flex-start; margin:18px 0 15px; color:#b28b91}
+.service-symbol svg {display:block; width:46px; height:46px; fill:none; stroke:currentColor; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round}
+.service-grid article {border:1px solid #f1e5e1}
+
+/* V9 — packs con elevación visible y flotación elegante incluso en celular. */
+.price-grid {overflow:visible; align-items:stretch; gap:24px; padding-top:23px; padding-bottom:24px}
+.price-card {
+  position:relative; isolation:isolate; border-radius:12px; overflow:visible;
+  box-shadow:0 12px 28px rgba(91,62,70,.12),0 2px 6px rgba(91,62,70,.055);
+  animation:bysofi-float 4.8s ease-in-out infinite!important;
+  transition:border-color .25s ease,background-color .25s ease;
+  backface-visibility:hidden; transform:translate3d(0,0,0);
+}
+.price-card:nth-child(2) {animation-delay:-1.6s!important}
+.price-card:nth-child(3) {animation-delay:-3.2s!important}
+@keyframes bysofi-float {
+  0%,100% {transform:translate3d(0,3px,0);box-shadow:0 11px 22px rgba(91,62,70,.11),0 2px 7px rgba(91,62,70,.05)}
+  50% {transform:translate3d(0,-13px,0);box-shadow:0 25px 42px rgba(91,62,70,.19),0 9px 13px rgba(91,62,70,.07)}
+}
+@media(hover:hover) and (pointer:fine) {
+ .price-card:hover {animation-play-state:paused!important;transform:translate3d(0,-10px,0);box-shadow:0 26px 48px rgba(91,62,70,.20)}
+}
+@media(max-width:700px) {
+ .price-grid{gap:34px;padding-top:20px;padding-bottom:34px}
+ .price-card{animation-duration:4.2s!important}
+}
+@media(prefers-reduced-motion:reduce) {
+ .ticker-track,.price-card{animation:none!important;transform:none!important;will-change:auto!important}
+ .ticker{overflow:hidden!important}
+ .price-card{box-shadow:0 15px 28px rgba(91,62,70,.15)}
+}
